@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+
+    <style>
+      .product-card {
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px auto;
+        background-color: #ecc9f6;
+        max-width: 500px;
+      }
+      .product-card h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+      .text {
+        margin: 4px 0;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+      }
+      .mt-20 {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        text-align: center;
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      "
+    >
+      <button
+        style="
+          background-color: rgb(204, 21, 241);
+          border: 0;
+          padding: 10px;
+          color: aliceblue;
+          font-size: 24px;
+          font-weight: 600;
+          border-radius: 8px;
+        "
+        id="get"
+      >
+        get
+      </button>
+      <div id="product" class="mt-20"></div>
+    </div>
+
+    <script>
+      const btn2 = document.getElementById("get");
+      btn2.addEventListener("click", () => {
+        fetch("http://localhost:3000/getProduct", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            let productHtml = "";
+            data.forEach((product) => {
+              productHtml += `
+                <div class="product-card">
+                  <h2>${product.name}</h2>
+                  <p class="text">Price: ${product.price}</p>
+                  <p class="text">Rate: ${product.rate}</p>
+                  <p class="text">Description: ${product.description}</p>
+                </div>`;
+            });
+            document.getElementById("product").innerHTML = productHtml;
+          })
+          .catch((error) => {
+            console.error("Error fetching the product:", error);
+            document.getElementById("product").innerHTML = `
+              <div class="product-card">
+                <p>Error fetching the product details. Please try again later.</p>
+              </div>`;
+          });
+      });
+    </script>
+  </body>
+</html>

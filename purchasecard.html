@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Card</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <style>
+      #preview {
+        /* margin-top: 10px; */
+        text-align: center;
+      }
+      #preview img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+      .purchase-card {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      .labeltext {
+        font-weight: bold;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .mt-80 {
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="purchase-card mt-80 ">
+      <h1 style="text-align: center">Purchase Card</h1>
+      <div class="form-group">
+        <label for="purchaseId" class="labeltext">Purchase ID:</label>
+        <input type="text" id="id" name="purchaseId" required />
+      </div>
+      <div class="form-group">
+        <label for="name" class="labeltext">Name:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="password" class="labeltext">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button
+        id="btn"
+        type="button"
+        style="
+          display: flex;
+          justify-content: center;
+          background-color: rgb(167, 221, 255);
+          border: 0;
+          padding: 10px;
+          border-radius: 4px;
+        "
+        class="labeltext"
+      >
+        Submit Purchase
+      </button>
+      <div id="cart"></div>
+    </div>
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        fetch("http://localhost:3000/purchsed", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: document.getElementById("id").value,
+            name: document.getElementById("name").value,
+            password: document.getElementById("password").value,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          // .catch((error) => console.error("Error:", error));
+      });
+    </script>
+  </body>
+</html>
