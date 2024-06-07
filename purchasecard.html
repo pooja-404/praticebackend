@@ -42,14 +42,14 @@
     </style>
   </head>
   <body>
-    <div class="purchase-card mt-80 ">
+    <div class="purchase-card mt-80">
       <h1 style="text-align: center">Purchase Card</h1>
       <div class="form-group">
         <label for="purchaseId" class="labeltext">Purchase ID:</label>
-        <input type="text" id="id" name="purchaseId" required />
+        <input type="text" id="itemid" name="purchaseId" required />
       </div>
       <div class="form-group">
-        <label for="name" class="labeltext">Name:</label>
+        <label for="name" class="labeltext">Id:</label>
         <input type="text" id="name" name="name" required />
       </div>
       <div class="form-group">
@@ -76,20 +76,21 @@
     <script>
       const btn = document.getElementById("btn");
       btn.addEventListener("click", () => {
+        console.log({ name, password, itemid });
         fetch("http://localhost:3000/purchsed", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id: document.getElementById("id").value,
+            itemid: document.getElementById("itemid").value,
             name: document.getElementById("name").value,
             password: document.getElementById("password").value,
           }),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data))
-          // .catch((error) => console.error("Error:", error));
+          .then((data) => console.log(data));
+        // .catch((error) => console.error("Error:", error));
       });
     </script>
   </body>

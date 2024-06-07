@@ -16,11 +16,10 @@
         display: block;
         margin: 0 auto;
       }
-      
     </style>
   </head>
   <body>
-    <div class="product-card ">
+    <div class="product-card">
       <h1>Shopping Cart</h1>
       <div id="uploadForm" enctype="multipart/form-data">
         <div class="d-block d-md-none upload-container mb-3 ms-md-0">
@@ -33,7 +32,12 @@
               alt="Uploaded Image"
             />
           </div>
-          <input class="upload" type="file" onchange="previewImage(event)" />
+          <input
+            id="image"
+            class="upload"
+            type="file"
+            onchange="previewImage(event)"
+          />
         </div>
         <label for="productId" class="labeltext">Product ID:</label>
         <input
@@ -120,6 +124,7 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            image: document.getElementById("image").value,
             id: document.getElementById("productId").value,
             name: document.getElementById("productName").value,
             rate: document.getElementById("productRating").value,

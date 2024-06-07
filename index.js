@@ -24,12 +24,14 @@ app.use(cors());
 const user = [];
 app.post("/signup", (req, res) => {
   var id = req.body.id;
+  var name = req.body.name;
   var pass = req.body.pass;
   var Address = req.body.Address;
   var Phoneno = req.body.Phoneno;
   var city = req.body.city;
   var users = {
     id,
+    name,
     pass,
     Address,
     Phoneno,
@@ -38,13 +40,7 @@ app.post("/signup", (req, res) => {
   };
   user.push(users);
   // console.log(user);
-  res.json({
-    id,
-    pass,
-    Address,
-    Phoneno,
-    city,
-  });
+  res.json({ user });
 });
 
 app.post("/login", (req, res) => {
@@ -115,12 +111,14 @@ app.post("/changepass", (req, res) => {
 const seller = [];
 app.post("/sellersignup", (req, res) => {
   var id = req.body.id;
+  var name = req.body.name;
   var pass = req.body.pass;
   var Address = req.body.Address;
   var Phoneno = req.body.Phoneno;
   var city = req.body.city;
   var sellers = {
     id,
+    name,
     pass,
     Address,
     Phoneno,
@@ -130,6 +128,7 @@ app.post("/sellersignup", (req, res) => {
   // console.log(user);
   res.json({
     id,
+    name,
     pass,
     Address,
     Phoneno,
@@ -148,6 +147,7 @@ app.post("/sellerlogin", (req, res) => {
           Phoneno: seller[i].Phoneno,
           city: seller[i].city,
         });
+        return;
         // console.log("Login successful")
       }
     } else {
@@ -158,20 +158,19 @@ app.post("/sellerlogin", (req, res) => {
 });
 const products = [];
 app.post("/add", (req, res) => {
-  const { id, name, rate, price, description } = req.body;
+  const { image, id, name, rate, price, description } = req.body;
   const newProduct = {
+    image,
     id,
     name,
     rate,
     price,
     description,
   };
-
   products.push(newProduct);
   console.log(products);
   res.json(newProduct);
 });
-
 app.get("/getProduct", (req, res) => {
   res.json(products);
 });
@@ -193,21 +192,23 @@ app.post("/purchsed", (req, res) => {
   const id = req.body.id;
   const pass = req.body.pass;
   const itemid = req.body.itemid;
-  for (let i = 0; i < products.length; i++) {
+  console.log({ id, pass, itemid });
+  for (let i = 0; i < user.length; i++) {
     if (user[i].id === id) {
-      if (user[i].pass === pass)
+      if (user[i].pass === pass) {
         for (let g = 0; g < products.length; g++) {
           if (products[g].id === itemid) {
-            user[g].purchased.push(products[g]);
-            res.json(user[g])
+            user[i].purchased.push(products[g]);
+            res.json(user[i]);
+            return;
           }
         }
-    } else {
-      res.json("user not found");
+      }
     }
   }
-  // res.json({ massage: "user not found" });
+  res.json({ massage: "user not found" });
 });
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

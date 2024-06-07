@@ -114,6 +114,17 @@
             "
           />
           <input
+            id="nam"
+            type="text"
+            placeholder="name"
+            style="
+              border: 2px solid black;
+              border-radius: 4px;
+              font-size: 18px;
+              padding: 10px;
+            "
+          />
+          <input
             type="text"
             placeholder="Password"
             id="name"
@@ -189,6 +200,7 @@
           body: JSON.stringify({
             pass: document.getElementById("name").value,
             id: document.getElementById("id").value,
+            name: document.getElementById("nam").value,
             Address: document.getElementById(" Address").value,
             Phoneno: document.getElementById("Phoneno").value,
             city: document.getElementById("city").value,
