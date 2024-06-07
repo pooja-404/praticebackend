@@ -1,25 +1,28 @@
-.container {
+/* .container {
   max-width: 500px;
   margin: auto;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .product-card {
   width: 380px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 7px 8px 0px;
   padding: 10px;
   margin: auto;
   display: flex;
+  border-radius: 8px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   /* margin-top: 100px; */
+  margin-top: 60px;
+  background: white;
+
   margin-bottom: 10px;
 }
-
 .photoframe {
   width: 300px;
   height: 200px;
@@ -30,12 +33,23 @@
 }
 .labeltext {
   font-weight: 600;
-  padding-bottom: 2px;
+  width: 100%;
   color: black;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.w-100{
+  width: 100%;
+}
+.labeltextinput{
+  width: 100%;
+  color: black;
+  font-size: 16px;
+  border-radius: 4px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: 2px solid rgb(204, 200, 200);
+}
 .formcontent {
   align-items: center;
   justify-content: center;
@@ -53,8 +67,8 @@
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   font-weight: 600;
   color: black;
   font-size: 16px;

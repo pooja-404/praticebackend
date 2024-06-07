@@ -18,7 +18,7 @@
       }
     </style>
   </head>
-  <body>
+  <body style="background-color: #f4dddd">
     <div class="product-card">
       <h1>Shopping Cart</h1>
       <div id="uploadForm" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
           id="productId"
           name="productId"
           required
-          class="labeltext"
+          class="labeltextinput"
         /><br /><br />
         <label for="productName" class="labeltext">Product Name:</label>
         <input
@@ -53,7 +53,7 @@
           id="productName"
           name="productName"
           required
-          class="labeltext"
+          class="labeltextinput"
         /><br /><br />
 
         <label for="productRating" class="labeltext">Product Rating:</label>
@@ -64,7 +64,7 @@
           min="1"
           max="5"
           required
-          class="labeltext"
+          class="labeltextinput"
         /><br /><br />
 
         <label for="productPrice" class="labeltext">Product Price:</label>
@@ -73,12 +73,12 @@
           id="productPrice"
           name="productPrice"
           required
-          class="labeltext"
+          class="labeltextinput"
         /><br /><br />
-        <div style="display: flex; align-items: center; gap: 5px">
-          <label for="description" class="labeltext">Description:</label>
+        <div style=" width: 100%;">
+          <label for="description" class="labeltext ">Description:</label>
           <textarea
-            class="labeltext"
+            class="labeltextinput w-100"
             id="description"
             name="description"
           ></textarea
@@ -89,14 +89,16 @@
           style="
             display: flex;
             justify-content: center;
-            background-color: rgb(167, 221, 255);
+            background: rgb(111, 0, 255);
             border: 0;
             padding: 10px;
+            color: white;
             border-radius: 4px;
             cursor: pointer;
+            width: 100%;
+          
           "
-          class="labeltext"
-        >
+          class="labeltext">
           Add to Cart
         </button>
       </div>

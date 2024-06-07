@@ -23,6 +23,7 @@
         border: 1px solid #ddd;
         border-radius: 5px;
         background-color: #f9f9f9;
+        box-shadow: 0px 7px 8px 0px;
       }
       .labeltext {
         font-weight: bold;
@@ -41,20 +42,20 @@
       }
     </style>
   </head>
-  <body>
+  <body style="background-color: #F4DDDD;">
     <div class="purchase-card mt-80">
       <h1 style="text-align: center">Purchase Card</h1>
       <div class="form-group">
         <label for="purchaseId" class="labeltext">Purchase ID:</label>
-        <input type="text" id="itemid" name="purchaseId" required />
+        <input class="labeltextinput" type="text" id="itemid" name="purchaseId" required />
       </div>
       <div class="form-group">
         <label for="name" class="labeltext">Id:</label>
-        <input type="text" id="name" name="name" required />
+        <input class="labeltextinput" type="text" id="name" name="name" required />
       </div>
       <div class="form-group">
         <label for="password" class="labeltext">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <input class="labeltextinput" type="password" id="password" name="password" required />
       </div>
       <button
         id="btn"
@@ -62,10 +63,11 @@
         style="
           display: flex;
           justify-content: center;
-          background-color: rgb(167, 221, 255);
+          background-color: rgb(25, 18, 219);
           border: 0;
           padding: 10px;
           border-radius: 4px;
+          color: #fff;
         "
         class="labeltext"
       >
@@ -84,7 +86,7 @@
           },
           body: JSON.stringify({
             itemid: document.getElementById("itemid").value,
-            name: document.getElementById("name").value,
+            id: document.getElementById("name").value,
             password: document.getElementById("password").value,
           }),
         })

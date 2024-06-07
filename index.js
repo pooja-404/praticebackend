@@ -4,23 +4,6 @@ app.use(express.json());
 const cors = require("cors");
 const port = 3000;
 app.use(cors());
-// user = [];
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
-
-// app.get("/about", (req, res) => {
-//   res.send("this is mine");
-// });
-// app.get("/demo", (req, res) => {
-//   var name = req.query.name;
-//   res.send(`hello ${name} mam`);
-// });
-
-// app.get("/test", (req, res) => {
-//   var age = req.headers.age;
-//   res.send(`i am ${age} years old`);
-// });
 const user = [];
 app.post("/signup", (req, res) => {
   var id = req.body.id;
@@ -54,10 +37,11 @@ app.post("/login", (req, res) => {
           Phoneno: user[i].Phoneno,
           city: user[i].city,
         });
+        return;
         // console.log("Login successful")
+      } else {
+        res.json("Login faild");
       }
-    } else {
-      res.json("Login faild");
     }
   }
   res.json({ massage: "user not found" });
@@ -77,37 +61,6 @@ app.post("/changepass", (req, res) => {
     }
   }
 });
-// const product = [];
-// app.post("/add", (req, res) => {
-//   const { Name, Price, Rating, Discription } = req.body;
-
-//   const newProduct = {
-//     Name,
-//     Price,
-//     Rating,
-//     Discription,
-//   };
-
-//   for (let i = 0; i < product.length; i++) {
-//     if (product[i].Name === Name && product[i].Price === Price) {
-//       return res.j(400).json({ error: "Product already exists" });
-//     }
-//   }
-
-//   product.push(newProduct);
-//   res.json(newProduct);
-// });
-// app.post("/task", (req, res) => {
-//   var id = req.body.id;d
-//   var name = req.body.name;
-//   var users = {
-//     id,
-//     name,
-//   };
-//   user.push(users);
-//   res.json({ massage: `my id ${id} and pswd ${name}`, user });
-// });
-
 const seller = [];
 app.post("/sellersignup", (req, res) => {
   var id = req.body.id;
@@ -148,10 +101,9 @@ app.post("/sellerlogin", (req, res) => {
           city: seller[i].city,
         });
         return;
-        // console.log("Login successful")
+      } else {
+        res.json("Login faild");
       }
-    } else {
-      res.json("Login faild");
     }
   }
   res.json({ massage: "seller not found" });
@@ -175,29 +127,17 @@ app.get("/getProduct", (req, res) => {
   res.json(products);
 });
 
-// app.post("/purchased", (req, res) => {
-//   const id = req.body.id;
-//   for (let i = 0; i < products.length; i++) {
-//     if (products[i].id == id) {
-//       purchased.push(products[i]);
-//       res.json(purchased);
-//       console.log("Login successful");
-//       return;
-//     }
-//   }
-//   res.json("user not found");
-// });
-
 app.post("/purchsed", (req, res) => {
   const id = req.body.id;
-  const pass = req.body.pass;
+  const password = req.body.password;
   const itemid = req.body.itemid;
-  console.log({ id, pass, itemid });
+  console.log({ id, password, itemid });
   for (let i = 0; i < user.length; i++) {
-    if (user[i].id === id) {
-      if (user[i].pass === pass) {
+    if (user[i].id == id) {
+      if (user[i].pass == password) {
         for (let g = 0; g < products.length; g++) {
-          if (products[g].id === itemid) {
+          console.log(products);
+          if (products[g].id == itemid) {
             user[i].purchased.push(products[g]);
             res.json(user[i]);
             return;
